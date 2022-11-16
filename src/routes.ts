@@ -1,23 +1,17 @@
-import { UserController } from "./controller/UserController"
+import { Router, Request, Response } from 'express';
 
-export const Routes = [{
-    method: "get",
-    route: "/users",
-    controller: UserController,
-    action: "all"
-}, {
-    method: "get",
-    route: "/users/:id",
-    controller: UserController,
-    action: "one"
-}, {
-    method: "post",
-    route: "/users",
-    controller: UserController,
-    action: "save"
-}, {
-    method: "delete",
-    route: "/users/:id",
-    controller: UserController,
-    action: "remove"
-}]
+import { usersController } from './controller/UsersController';
+
+const routes = Router();
+
+routes.get('/', async (req: Request, res: Response) => {
+  return res.status(200).json({ message: 'Hello World' });
+});
+
+routes.get('/users', async (req: Request, res: Response) => {
+  const users = await usersController.getUsers();
+
+  return res.status(200).json(users);
+});
+
+export { routes };
