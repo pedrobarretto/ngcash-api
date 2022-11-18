@@ -1,9 +1,7 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 
-import { Accounts } from './entity/Accounts';
-import { Transactions } from './entity/Transactions';
-import { Users } from './entity/Users';
+import { AccountsModel, TransactionsModel, UsersModel } from './entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -14,7 +12,7 @@ export const AppDataSource = new DataSource({
   database: 'ngcash',
   synchronize: true,
   logging: false,
-  entities: [Users, Accounts, Transactions],
+  entities: [AccountsModel, TransactionsModel, UsersModel],
   migrations: [],
   subscribers: [],
 });
